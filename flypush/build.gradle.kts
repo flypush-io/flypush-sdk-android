@@ -44,6 +44,16 @@ dependencies {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/flypush-io/flypush-sdk-android")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?: ""
+                password = System.getenv("GITHUB_TOKEN") ?: ""
+            }
+        }
+    }
     publications {
         register<MavenPublication>("release") {
             groupId = "io.flypush"
